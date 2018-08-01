@@ -33,6 +33,11 @@ class linear_model():
         t = self.res - self.label
         self.w += -lr*t*self.x
 
+class logistic_model(linear_model):
+    def __init__(self, init_w):
+        self.y = lambda x: self.sigmoid(np.dot(self.w.T, x))
+    def sigmoid(x): return 1 / (1 + np.exp(-x))
+
 class trainer():
     def __init__(self, model, epoch, lr):
         self.model = model
